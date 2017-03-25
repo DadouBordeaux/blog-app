@@ -1,27 +1,25 @@
 [{
-    "id": 0,
-    "name_fr": "medecines-ancestrales",
-    "name_en": "ancestral-medicine",
-    "name_es": "medicina-ancestral",
-    "label_fr": "Médecines ancestrales",
-    "label_en": "Ancestral medicine",
-    "label_es": "Medicina ancestral"
-},
-{
-    "id": 1,
-    "name_fr": "peuple-indigene",
-    "name_en": "native-people",
-    "name_es": "pueblo-nativo",
-    "label_fr": "Peuple indigène",
-    "label_en": "Native people",
-    "label_es": "Pueblo nativo"
-},
-{
-    "id": 2,
-    "name_fr": "culture-paysages",
-    "name_en": "culture-landscapes",
-    "name_es": "cultura-paisajes",
-    "label_fr": "Culture et paysages",
-    "label_en": "Culture and landscapes",
-    "label_es": "Cultura y paisajes"
+  "id": 0,
+  "name_fr": "medecines-ancestrales",
+  "name_en": "ancestral-medicine",
+  "name_es": "medicina-ancestral",
+  "label_fr": "Médecines ancestrales",
+  "label_en": "Ancestral medicine",
+  "label_es": "Medicina ancestral"
+}, {
+  "id": 1,
+  "name_fr": "peuple-indigene",
+  "name_en": "native-people",
+  "name_es": "pueblo-nativo",
+  "label_fr": "Peuple indigène",
+  "label_en": "Native people",
+  "label_es": "Pueblo nativo"
+}, {
+  "id": 2,
+  "name_fr": "culture-paysages",
+  "name_en": "culture-landscapes",
+  "name_es": "cultura-paisajes",
+  "label_fr": "Culture et paysages",
+  "label_en": "Culture and landscapes",
+  "label_es": "Cultura y paisajes"
 }]

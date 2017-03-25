@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -8945,63 +8945,73 @@ angular.module('ui.router.state')
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/*
+App Config
+*/
 
 
-// Create Angular config for app.config module
 
-AppConfig.$inject = ["$compileProvider", "$stateProvider", "$urlRouterProvider", "$locationProvider", "$translateProvider"];
+AppConfig.$inject = ["$compileProvider", "$urlMatcherFactoryProvider", "$stateProvider", "$urlRouterProvider", "$locationProvider", "$translateProvider"];
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.AppConfig = AppConfig;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function AppConfig($compileProvider, $stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
-    'ngInject';
+function AppConfig($compileProvider, $urlMatcherFactoryProvider, $stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
+  'ngInject';
 
-    $compileProvider.debugInfoEnabled(false);
+  // Disable debug infos (ng-scope, etc...)
 
-    $stateProvider.state('app', {
-        url: '/{lang}',
-        abstract: true,
-        controller: ["$stateParams", "$state", "$translate", function StateController($stateParams, $state, $translate) {
-            'ngInject';
+  $compileProvider.debugInfoEnabled(false);
 
-            _classCallCheck(this, StateController);
+  // Make /, /fr, /fr/, /fr/... works
+  $urlMatcherFactoryProvider.strictMode(false);
 
-            console.log($translate.preferredLanguage());
+  $stateProvider.state('app', {
+    url: '/:lang',
+    abstract: true,
+    controller: ["$stateParams", "$state", "$translate", function StateController($stateParams, $state, $translate) {
+      'ngInject';
 
-            if ($stateParams.lang !== 'en') {
-                $stateParams.lang = 'fr';
-                $state.go('app.header');
-            }
-            console.log($stateParams);
-        }],
-        params: {
-            lang: { squash: true, value: null }
-        },
-        template: '<app></app>'
-    }).state('app.index', {
-        url: '',
-        template: '<home-cp></home-cp>'
-    }).state('app.header', {
-        url: '/header',
-        template: '<header-cp></header-cp>'
-    });
-    $urlRouterProvider.otherwise('/');
-    $locationProvider.html5Mode(true);
+      _classCallCheck(this, StateController);
 
-    // Use JSON Files
-    $translateProvider.useStaticFilesLoader({
-        prefix: './translations/lang_',
-        suffix: '.json'
-    }).registerAvailableLanguageKeys(['fr', 'en', 'es'], {
-        'fr*': 'fr',
-        'en*': 'en',
-        'es*': 'es',
-        '*': 'fr'
-    }).fallbackLanguage('fr').determinePreferredLanguage().useSanitizeValueStrategy('sanitize');
+      console.log($translate.preferredLanguage());
+
+      if ($stateParams.lang !== 'en') {
+        //$stateParams.lang = 'fr';
+        //$state.go('app.header');
+      }
+      console.log($stateParams);
+    }],
+    params: {
+      lang: {
+        squash: true,
+        value: null
+      }
+    },
+    template: '<app></app>'
+  }).state('app.index', {
+    url: '',
+    template: '<home-cp></home-cp>'
+  }).state('app.header', {
+    url: '/header',
+    template: '<header-cp></header-cp>'
+  });
+  $urlRouterProvider.otherwise('/');
+  $locationProvider.html5Mode(true);
+
+  // Use JSON files for translations
+  $translateProvider.useStaticFilesLoader({
+    prefix: './translations/lang_',
+    suffix: '.json'
+  }).registerAvailableLanguageKeys(['fr', 'en', 'es'], {
+    'fr*': 'fr',
+    'en*': 'en',
+    'es*': 'es',
+    '*': 'fr'
+  }).fallbackLanguage('fr').determinePreferredLanguage().useSanitizeValueStrategy('sanitize');
 }
 
 /***/ }),
@@ -9009,6 +9019,10 @@ function AppConfig($compileProvider, $stateProvider, $urlRouterProvider, $locati
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/*
+App component
+*/
+
 
 
 Object.defineProperty(exports, "__esModule", {
@@ -9031,10 +9045,14 @@ var AppComponent = exports.AppComponent = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/*
+Common Module
+*/
+
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.CommonModule = undefined;
 
@@ -9042,13 +9060,13 @@ var _angular = __webpack_require__(2);
 
 var _angular2 = _interopRequireDefault(_angular);
 
-var _header = __webpack_require__(28);
+var _header = __webpack_require__(29);
+
+__webpack_require__(31);
+
+var _footer = __webpack_require__(28);
 
 __webpack_require__(30);
-
-var _footer = __webpack_require__(27);
-
-__webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9059,6 +9077,10 @@ var CommonModule = exports.CommonModule = _angular2.default.module('common', [])
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/*
+Home component
+*/
+
 
 
 Object.defineProperty(exports, "__esModule", {
@@ -45156,7 +45178,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)))
 
 /***/ }),
 /* 17 */
@@ -45181,7 +45203,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "#Footer__partage {\n\tdisplay:flex;\n\tjustify-content: center;\n\tflex-direction:row;\n\tmargin-top:20px;\n}\n\n#facebook {margin-left:5px;}\n#twitter {margin-right:5px;}\n\n.Footer__item {\n\tdisplay: flex;\n\tflex-direction:column; \n\tfont-family: 'Roboto';\n\tfont-size: 0.90rem;\n\tbackground-color: white;\n\tcolor:rgb(131, 135, 142);\n}\n\n\n#Footer__contact {\n\tmargin-top:15px;\n\tmargin-left: 30px;\n\tmargin-right:30px;\n}\n#Footer__copyright {\n\tmargin-top:15px;\n\tmargin-left: 10px;\n\ttext-align:center;\n\tmargin-bottom: 20px;\n}\n\n\n.lien {\n\ttext-decoration: none;}\n\n\t/* -----\nSVG Icons - svgicons.sparkk.fr\n----- */\n\n.svg-icon {\n\twidth: 1em;\n\theight: 1em;\n}\n\n.svg-icon path,\n.svg-icon polygon,\n.svg-icon rect {\n\tfill: #4691f6;\n}\n\n.svg-icon circle {\n\tstroke: #4691f6;\n\tstroke-width: 1;\n}\n\n", ""]);
+exports.push([module.i, "#Footer__partage {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  margin-top: 20px;\n}\n\n#facebook {\n  margin-left: 5px;\n}\n\n#twitter {\n  margin-right: 5px;\n}\n\n.Footer__item {\n  display: flex;\n  flex-direction: column;\n  font-family: 'Roboto';\n  font-size: 0.90rem;\n  background-color: white;\n  color: rgb(131, 135, 142);\n}\n\n#Footer__contact {\n  margin-top: 15px;\n  margin-left: 30px;\n  margin-right: 30px;\n}\n\n#Footer__copyright {\n  margin-top: 15px;\n  margin-left: 10px;\n  text-align: center;\n  margin-bottom: 20px;\n}\n\n.lien {\n  text-decoration: none;\n}\n\n\n/* -----\nSVG Icons - svgicons.sparkk.fr\n----- */\n\n.svg-icon {\n  width: 1em;\n  height: 1em;\n}\n\n.svg-icon path, .svg-icon polygon, .svg-icon rect {\n  fill: #4691f6;\n}\n\n.svg-icon circle {\n  stroke: #4691f6;\n  stroke-width: 1;\n}\n", ""]);
 
 // exports
 
@@ -45195,7 +45217,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\nul{\n\tlist-style: none;\n}\n\nli{\n\tdisplay: inline-block;\n}\n\n#topnav {\n\t/*left: 10px;\n\tposition: fixed;\n\twidth: 100%;*/\n\twidth: 1320px;\n\theight: 55px;\n\toverflow: hidden;\n\tbackground-color: #FFFFFF;\n\tcolor: #989898;\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-between;\n}\n\n#topnav a {\n\tfont-family: Roboto, sans-serif;\n\tfont-weight: bold;\n\ttext-decoration: none;\n\tfont-size: 12px;\n\tpadding: 12px;\n\tcolor: #989898;\n}\n\n#topnav a:hover {\n\tcolor: #6B6464;\n\t-webkit-transition: 1s;\n\t-o-transition: 1s;\n\ttransition: 1s;\n}\n\n\n.list-menu{\n\tmargin-top: 18px;\n\ttext-align: center;\n}\n\n.right-menu{\n\tfont-family: Roboto, sans-serif;\n\tfont-weight: bold;\n\tpadding-top: 10px;\n\tpadding-left: 10px;\n\tpadding-right: 10px;\n\tfont-size: 10px;\n\theight: 55px;\n\tline-height: 20px;\n\ttext-align: center;\n\t/*border-left: 1px solid #989898;*/\n}\n\n.dropdown-content {\n\tdisplay: none;\n\tposition: absolute;\n\tbackground-color: #FFFFFF;\n}\n.dropdown-content a {\n\tcolor: #989898;\n\tdisplay: block;\n\n}\n.dropdown-content a:hover {\n\tbackground-color: #f1f1f1;\n\n}\n\n.dropdown:hover .dropdown-content {\n\tdisplay: block;\n\tmargin-top: 5px;\n\t-webkit-transition-delay: 1s;\n\t-o-transition-delay: 1s;\n\ttransition-delay: 1s;\n}\n\ninput[type=text] {\n\twidth: 130px;\n\tbox-sizing: border-box;\n\tborder: 1px solid #ccc;\n\tborder-radius: 4px;\n\tfont-size: 13px;\n\tbackground-color: white;\n\tbackground-position: 10px 10px;\n\tbackground-repeat: no-repeat;\n\tpadding: 12px 20px 12px 40px;\n\t-webkit-transition: width 0.4s ease-in-out;\n\t-o-transition: width 0.4s ease-in-out;\n\ttransition: width 0.4s ease-in-out;\n}\ninput[type=text]:focus {\n\twidth: 240px;\n}\n\n.hhh{\n\twidth: 200px;\n\theight: 200px;\n\tborder: 1px solid black;\n}\n", ""]);
+exports.push([module.i, "ul {\n  list-style: none;\n}\n\nli {\n  display: inline-block;\n}\n\n#topnav {\n  /*left: 10px;\n\tposition: fixed;\n\twidth: 100%;*/\n  width: 1320px;\n  height: 55px;\n  overflow: hidden;\n  background-color: #FFFFFF;\n  color: #989898;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n\n#topnav a {\n  font-family: Roboto, sans-serif;\n  font-weight: bold;\n  text-decoration: none;\n  font-size: 12px;\n  padding: 12px;\n  color: #989898;\n}\n\n#topnav a:hover {\n  color: #6B6464;\n  -webkit-transition: 1s;\n  -o-transition: 1s;\n  transition: 1s;\n}\n\n.list-menu {\n  margin-top: 18px;\n  text-align: center;\n}\n\n.right-menu {\n  font-family: Roboto, sans-serif;\n  font-weight: bold;\n  padding-top: 10px;\n  padding-left: 10px;\n  padding-right: 10px;\n  font-size: 10px;\n  height: 55px;\n  line-height: 20px;\n  text-align: center;\n  /*border-left: 1px solid #989898;*/\n}\n\n.dropdown-content {\n  display: none;\n  position: absolute;\n  background-color: #FFFFFF;\n}\n\n.dropdown-content a {\n  color: #989898;\n  display: block;\n}\n\n.dropdown-content a:hover {\n  background-color: #f1f1f1;\n}\n\n.dropdown:hover .dropdown-content {\n  display: block;\n  margin-top: 5px;\n  -webkit-transition-delay: 1s;\n  -o-transition-delay: 1s;\n  transition-delay: 1s;\n}\n\ninput[type=text] {\n  width: 130px;\n  box-sizing: border-box;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-size: 13px;\n  background-color: white;\n  background-position: 10px 10px;\n  background-repeat: no-repeat;\n  padding: 12px 20px 12px 40px;\n  -webkit-transition: width 0.4s ease-in-out;\n  -o-transition: width 0.4s ease-in-out;\n  transition: width 0.4s ease-in-out;\n}\n\ninput[type=text]:focus {\n  width: 240px;\n}\n\n.hhh {\n  width: 200px;\n  height: 200px;\n  border: 1px solid black;\n}\n", ""]);
 
 // exports
 
@@ -45224,19 +45246,19 @@ module.exports = "<header-cp></header-cp>\n\n<ui-view></ui-view>\n\n<footer-cp><
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = "<footer class=\"Footer__item\">\n\n\t<div id=\"Footer__partage\">\n\t\t<div id=\"twitter\">\n\t\t\t<svg class=\"svg-icon\" viewBox=\"0 0 20 20\">\n\t\t\t\t<path fill=\"none\" d=\"M18.258,3.266c-0.693,0.405-1.46,0.698-2.277,0.857c-0.653-0.686-1.586-1.115-2.618-1.115c-1.98,0-3.586,1.581-3.586,3.53c0,0.276,0.031,0.545,0.092,0.805C6.888,7.195,4.245,5.79,2.476,3.654C2.167,4.176,1.99,4.781,1.99,5.429c0,1.224,0.633,2.305,1.596,2.938C2.999,8.349,2.445,8.19,1.961,7.925C1.96,7.94,1.96,7.954,1.96,7.97c0,1.71,1.237,3.138,2.877,3.462c-0.301,0.08-0.617,0.123-0.945,0.123c-0.23,0-0.456-0.021-0.674-0.062c0.456,1.402,1.781,2.422,3.35,2.451c-1.228,0.947-2.773,1.512-4.454,1.512c-0.291,0-0.575-0.016-0.855-0.049c1.588,1,3.473,1.586,5.498,1.586c6.598,0,10.205-5.379,10.205-10.045c0-0.153-0.003-0.305-0.01-0.456c0.7-0.499,1.308-1.12,1.789-1.827c-0.644,0.28-1.334,0.469-2.06,0.555C17.422,4.782,17.99,4.091,18.258,3.266\"></path>\n\t\t\t</svg>\n\t\t</div>\n\n\t\t<div id=\"facebook\">\n\t\t\t<svg class=\"svg-icon\" viewBox=\"0 0 20 20\">\n\t\t\t\t<path fill=\"none\" d=\"M11.344,5.71c0-0.73,0.074-1.122,1.199-1.122h1.502V1.871h-2.404c-2.886,0-3.903,1.36-3.903,3.646v1.765h-1.8V10h1.8v8.128h3.601V10h2.403l0.32-2.718h-2.724L11.344,5.71z\"></path>\n\t\t\t</svg>\n\t\t</div>\n\t</div>\n\t<p id=\"Footer__contact\">Ecrit par: Jérémy Larronde - \n\t\tContact email: <a class=\"lien\" href=\"mailto:jeremy_larronde@hotmail.com\">\n\t\tjeremy_larronde@hotmail.com</a>\n\n\t\t<p id=\"Footer__copyright\">Copyright © 2017 Wild Code School</p>\n\t\t\n\t</footer>";
+module.exports = "<footer class=\"Footer__item\">\n\n  <div id=\"Footer__partage\">\n    <div id=\"twitter\">\n      <svg class=\"svg-icon\" viewBox=\"0 0 20 20\">\n        <path fill=\"none\" d=\"M18.258,3.266c-0.693,0.405-1.46,0.698-2.277,0.857c-0.653-0.686-1.586-1.115-2.618-1.115c-1.98,0-3.586,1.581-3.586,3.53c0,0.276,0.031,0.545,0.092,0.805C6.888,7.195,4.245,5.79,2.476,3.654C2.167,4.176,1.99,4.781,1.99,5.429c0,1.224,0.633,2.305,1.596,2.938C2.999,8.349,2.445,8.19,1.961,7.925C1.96,7.94,1.96,7.954,1.96,7.97c0,1.71,1.237,3.138,2.877,3.462c-0.301,0.08-0.617,0.123-0.945,0.123c-0.23,0-0.456-0.021-0.674-0.062c0.456,1.402,1.781,2.422,3.35,2.451c-1.228,0.947-2.773,1.512-4.454,1.512c-0.291,0-0.575-0.016-0.855-0.049c1.588,1,3.473,1.586,5.498,1.586c6.598,0,10.205-5.379,10.205-10.045c0-0.153-0.003-0.305-0.01-0.456c0.7-0.499,1.308-1.12,1.789-1.827c-0.644,0.28-1.334,0.469-2.06,0.555C17.422,4.782,17.99,4.091,18.258,3.266\"></path>\n      </svg>\n    </div>\n\n    <div id=\"facebook\">\n      <svg class=\"svg-icon\" viewBox=\"0 0 20 20\">\n        <path fill=\"none\" d=\"M11.344,5.71c0-0.73,0.074-1.122,1.199-1.122h1.502V1.871h-2.404c-2.886,0-3.903,1.36-3.903,3.646v1.765h-1.8V10h1.8v8.128h3.601V10h2.403l0.32-2.718h-2.724L11.344,5.71z\"></path>\n      </svg>\n    </div>\n  </div>\n  <p id=\"Footer__contact\">Ecrit par: Jérémy Larronde - Contact email: <a class=\"lien\" href=\"mailto:jeremy_larronde@hotmail.com\">\n\t\tjeremy_larronde@hotmail.com</a>\n\n    <p id=\"Footer__copyright\">Copyright © 2017 Wild Code School</p>\n\n</footer>\n";
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- header -->\n<div id=\"topnav\" class=\"w3-bar \">\n\t<!-- espase de logo -->\n\t<!-- <img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYcRWD5h1dxmXQsBtnsHV9D0ulw1wbx3TiTqWZyMQtCDt5yIAp4g\" style=\"width: 200px; height: 55px;\"> -->\n  <div style=\"width: 200px; line-height: 55px; text-align: center; height: 55px;\">\n    LUR AZTIA\n  </div>\n\t<!-- list du menu -->\n\t<ul class=\"list-menu\">\n\t\t<li><a href=\"#\">THERAPIES</a></li>\n\t\t<li><a href=\"#\">MEDICINES ANCESTRALES</a></li>\n\t\t<li><a href=\"#\" data-ng-bind=\"'TITLE' | translate\"></a></li>\n\t</ul>\n\n\t<ul>\n\t\t<!-- parti de recherche -->\n\t\t<li id=\"search\" class=\"w3-padding w3-xlarge w3-text-orange right-menu\">\n\t\t\t<i class=\"fa fa-search\" style=\"font-size:15px;\"></i>\n\t\t\t<ul>\n\t\t\t\t<li class=\"dropdown\">\n\t\t\t\t\t<a href=\"#\">RECHERCHER</a>\n\t\t\t\t\t<div class=\"dropdown-content\">\n\t\t\t\t\t\t<a href=\"#\">\n\t\t\t\t\t\t\t<form>\n\t\t\t\t\t\t\t\t<span class=\"icon icon-search\"><i class=\"fa fa-search\" aria-hidden=\"true\" style=\"font-size:15px; padding: 0px;\"></i></span>\n\t\t\t\t\t\t\t\t<input type=\"text\" name=\"search\" placeholder=\"Search..\">\n\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</li>\n\t\t<!-- parti de filter -->\n\t\t<li id=\"filter\" class=\"w3-padding w3-xlarge w3-text-orange right-menu\">\n\t\t\t<i class=\"fa fa-bars\" style=\"font-size:15px;\"></i>\n\n\t\t\t<ul>\n\t\t\t\t<li class=\"dropdown\">\n\t\t\t\t\t<a href=\"#\">FILTER &#9660;</a>\n\t\t\t\t\t<div class=\"dropdown-content\">\n\t\t\t\t\t\t<a href=\"#\">CATEGORIES</a>\n\t\t\t\t\t\t<a href=\"#\">DATE</a>\n\t\t\t\t\t</div>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</li>\n\t\t<!-- parti du langues -->\n\t\t<li id=\"langue\" class=\"w3-padding w3-xlarge w3-text-orange right-menu\">\n\t\t\t<i class=\"fa fa-language\" aria-hidden=\"true\" style=\"font-size:15px\"></i>\n\t\t\t<ul>\n\t\t\t\t<li class=\"dropdown\">\n\t\t\t\t\t<a href=\"#\">FR</a>\n\t\t\t\t\t<div class=\"dropdown-content\">\n\t\t\t\t\t\t<a href=\"#\">FR</a>\n\t\t\t\t\t\t<a href=\"#\">ENG</a>\n\t\t\t\t\t\t<a href=\"#\">ESP</a>\n\t\t\t\t\t</div>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</li>\n\t</ul>\n</div>\n";
+module.exports = "<!-- header -->\n<div id=\"topnav\" class=\"w3-bar \">\n  <!-- espase de logo -->\n  <!-- <img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYcRWD5h1dxmXQsBtnsHV9D0ulw1wbx3TiTqWZyMQtCDt5yIAp4g\" style=\"width: 200px; height: 55px;\"> -->\n  <div style=\"width: 200px; line-height: 55px; text-align: center; height: 55px;\">\n    LUR AZTIA\n  </div>\n  <!-- list du menu -->\n  <ul class=\"list-menu\">\n    <li><a href=\"#\">THERAPIES</a></li>\n    <li><a href=\"#\">MEDICINES ANCESTRALES</a></li>\n    <li>\n      <a href=\"#\" data-ng-bind=\"'TITLE' | translate\"></a>\n    </li>\n  </ul>\n\n  <ul>\n    <!-- parti de recherche -->\n    <li id=\"search\" class=\"w3-padding w3-xlarge w3-text-orange right-menu\">\n      <i class=\"fa fa-search\" style=\"font-size:15px;\"></i>\n      <ul>\n        <li class=\"dropdown\">\n          <a href=\"#\">RECHERCHER</a>\n          <div class=\"dropdown-content\">\n            <a href=\"#\">\n              <form>\n                <span class=\"icon icon-search\"><i class=\"fa fa-search\" aria-hidden=\"true\" style=\"font-size:15px; padding: 0px;\"></i></span>\n                <input type=\"text\" name=\"search\" placeholder=\"Search..\">\n              </form>\n            </a>\n          </div>\n        </li>\n      </ul>\n    </li>\n    <!-- parti de filter -->\n    <li id=\"filter\" class=\"w3-padding w3-xlarge w3-text-orange right-menu\">\n      <i class=\"fa fa-bars\" style=\"font-size:15px;\"></i>\n\n      <ul>\n        <li class=\"dropdown\">\n          <a href=\"#\">FILTER &#9660;</a>\n          <div class=\"dropdown-content\">\n            <a href=\"#\">CATEGORIES</a>\n            <a href=\"#\">DATE</a>\n          </div>\n        </li>\n      </ul>\n    </li>\n    <!-- parti du langues -->\n    <li id=\"langue\" class=\"w3-padding w3-xlarge w3-text-orange right-menu\">\n      <i class=\"fa fa-language\" aria-hidden=\"true\" style=\"font-size:15px\"></i>\n      <ul>\n        <li class=\"dropdown\">\n          <a href=\"#\">FR</a>\n          <div class=\"dropdown-content\">\n            <a href=\"#\">FR</a>\n            <a href=\"#\">ENG</a>\n            <a href=\"#\">ESP</a>\n          </div>\n        </li>\n      </ul>\n    </li>\n  </ul>\n</div>\n";
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n    test\n</p>\n";
+module.exports = "<p>\n  test\n</p>\n";
 
 /***/ }),
 /* 25 */
@@ -45344,148 +45366,14 @@ module.exports = Array.isArray || function (arr) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/*
+App Module
+*/
 
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.FooterComponent = undefined;
-
-var _footer = __webpack_require__(22);
-
-var _footer2 = _interopRequireDefault(_footer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var FooterComponent = exports.FooterComponent = {
-	template: _footer2.default,
-	controller: function FooterComponent() {
-		'ngInject';
-
-		_classCallCheck(this, FooterComponent);
-	}
-};
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.HeaderComponent = undefined;
-
-var _header = __webpack_require__(23);
-
-var _header2 = _interopRequireDefault(_header);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } // importation header.html
-
-
-var HeaderComponent = exports.HeaderComponent = {
-    template: _header2.default,
-    controller: function HeaderComponent() {
-        'ngInject';
-
-        _classCallCheck(this, HeaderComponent);
-    }
-};
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(18);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./footer.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./footer.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(19);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./header.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./header.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.AppModule = undefined;
 
@@ -45523,9 +45411,152 @@ __webpack_require__(12);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var AppModule = exports.AppModule = _angular2.default.module('app', [_angularSanitize2.default, _angularUiRouter2.default, _angularTranslate2.default, _angularTranslateLoaderStaticFiles2.default, _common.CommonModule]).component('app', _app.AppComponent).component('homeCp', _home.HomeComponent).config(_app2.AppConfig)
-// Disable debug infos (ng-scope, etc...)
-.name;
+var AppModule = exports.AppModule = _angular2.default.module('app', [_angularSanitize2.default, _angularUiRouter2.default, _angularTranslate2.default, _angularTranslateLoaderStaticFiles2.default, _common.CommonModule]).component('app', _app.AppComponent).component('homeCp', _home.HomeComponent).config(_app2.AppConfig).name;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+Footer Component
+*/
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FooterComponent = undefined;
+
+var _footer = __webpack_require__(22);
+
+var _footer2 = _interopRequireDefault(_footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var FooterComponent = exports.FooterComponent = {
+  template: _footer2.default,
+  controller: function FooterComponent() {
+    'ngInject';
+
+    _classCallCheck(this, FooterComponent);
+  }
+};
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+Header Component
+*/
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HeaderComponent = undefined;
+
+var _header = __webpack_require__(23);
+
+var _header2 = _interopRequireDefault(_header);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var HeaderComponent = exports.HeaderComponent = {
+  template: _header2.default,
+  controller: function HeaderComponent() {
+    'ngInject';
+
+    _classCallCheck(this, HeaderComponent);
+  }
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(18);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./footer.css", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./footer.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(19);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./header.css", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./header.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ })
 /******/ ]);

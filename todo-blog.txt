@@ -1,0 +1,111 @@
+app config module ?
+make es default language ?
+
+===================
+BASE
+===================
+- Base app
+  - Front app
+  	- Home cp
+  	- Header cp
+  	- Footer cp
+  	- Blogs app
+      - Médecine ancestral cp
+      - Thérapie cp
+      - Blog cp
+  		- Articles cp
+  			- Article cp
+  				- Comments cp
+  		- Filter cp
+  		- Search cp
+  	- Rdv cp
+  		- ...
+  - Back app
+    - Auth cp
+      - Auth cp
+  	- Blogs cp
+      - Médecine ancestral cp
+      - Thérapie cp
+      - Blog cp
+  		- Articles cp
+        - Article cp
+  		- Categories cp
+  		- Langs cp
+  		- Medias cp
+  		- Users cp
+    	- Config cp
+  		- Config cp
+  		- Comments cp
+  	- Rdv cp
+  		- ...
+
+===================
+CODE
+===================
+- langue en fonction du navigateur
+- pagination (sans recharger la page)
+- server or client side rendering ?
+- how to load config file to make it available everywhere ?
+  - app.config() ?
+- use passport for auth
+- bindings
+- textangular
+  - virer bootstrap et ui-bootstrap
+- queries in parallel
+-----------------------
+## optionnal ##
+-----------------------
+- slug
+  - update slug when update article ?
+  - make it manually editable ?
+- scss / postcss
+
+===================
+DB
+===================
+- categories
+-----------------------
+## optionnal ##
+-----------------------
+- langs
+- config
+- comments
+- medias
+- users
+
+===================
+FRONT
+===================
+- langs choice
+- display articles by date created
+- pagination
+	- articles
+- categories
+- search
+-----------------------
+## optionnal ##
+-----------------------
+- comments
+
+===================
+BACK
+===================
+- login
+- check for double when upload image and add 01
+- posts
+	- textAngular
+    - browse images
+  - preview article
+  - pagination
+  - update date (created and updated)
+  - galleries
+- categories
+- langs
+-----------------------
+## optionnal ##
+-----------------------
+- setup
+  - config
+- config
+- medias
+- comments
