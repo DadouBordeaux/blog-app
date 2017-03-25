@@ -1,5 +1,5 @@
 /*
-This file define document schema for post
+  This file define document schema for post
 */
 
 'use strict'

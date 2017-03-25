@@ -1,5 +1,5 @@
 /*
-This file is the entry point
+  This file is the entry point
 */
 
 'use strict'

@@ -1,5 +1,5 @@
 /*
-  This file is function to load (require) automatically all files in app/routes folder except himself
+  This file is a function to load (require) automatically all files in app/routes folder except itself
 */
 
 'use strict'

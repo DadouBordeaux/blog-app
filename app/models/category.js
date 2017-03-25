@@ -1,5 +1,5 @@
 /*
-This file define document schema for category
+  This file define document schema for category
 */
 
 'use strict'

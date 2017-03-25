@@ -1,5 +1,5 @@
 /*
-This file is the server
+  This file is the server
 */
 
 'use strict'
@@ -91,7 +91,7 @@ exports.startServer = (port) => {
   app.listen(port);
   console.log(`server listening on port ${port}`);
 
-  //Intercept when application killed
+  // Intercept when application killed
   process.on('SIGINT', () => {
     console.log("\nStopping...");
     process.exit();

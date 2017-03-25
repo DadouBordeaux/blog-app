@@ -1,5 +1,5 @@
 /*
-Webpack configuration
+  Webpack configuration
 */
 
 'use strict';
@@ -30,8 +30,7 @@ module.exports = {
           query: {
             presets: ['env']
           }
-        },
-      ]
+        }]
     }, {
       test: /\.css$/,
       use: ['style-loader', 'css-loader']

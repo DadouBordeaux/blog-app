@@ -1,3 +1,9 @@
+/*
+  Environment config
+*/
+
+'use strict'
+
 module.exports = {
   "development": {
     db: process.env.MONGODB_URI ||  'mongodb://localhost:27017/luraztia',

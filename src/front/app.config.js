@@ -1,5 +1,5 @@
 /*
-App Config
+  App Config
 */
 
 'use strict';

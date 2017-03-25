@@ -1,5 +1,5 @@
 /*
-This file define all routes (API RESTFull) for posts
+  This file define all routes (API RESTFull) for posts
 */
 
 'use strict'

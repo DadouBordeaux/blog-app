@@ -8946,7 +8946,7 @@ angular.module('ui.router.state')
 
 "use strict";
 /*
-App Config
+  App Config
 */
 
 
@@ -9020,7 +9020,7 @@ function AppConfig($compileProvider, $urlMatcherFactoryProvider, $stateProvider,
 
 "use strict";
 /*
-App component
+  App component
 */
 
 
@@ -9046,7 +9046,7 @@ var AppComponent = exports.AppComponent = {
 
 "use strict";
 /*
-Common Module
+  Common Module
 */
 
 
@@ -9078,7 +9078,7 @@ var CommonModule = exports.CommonModule = _angular2.default.module('common', [])
 
 "use strict";
 /*
-Home component
+  Home component
 */
 
 
@@ -45367,7 +45367,7 @@ module.exports = Array.isArray || function (arr) {
 
 "use strict";
 /*
-App Module
+  App Module
 */
 
 

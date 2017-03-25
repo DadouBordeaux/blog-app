@@ -1,5 +1,5 @@
 /*
-App Module
+  App Module
 */
 
 'use strict'

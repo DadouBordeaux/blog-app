@@ -1,5 +1,5 @@
 /*
-Home component
+  Home component
 */
 
 'use strict'

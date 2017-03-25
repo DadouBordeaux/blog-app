@@ -70,6 +70,14 @@ Use 'ngInject' when you send a parameter :
 
 https://github.com/toddmotto/angular-styleguide/tree/es6-version
 
+Prefix angular attribute with data- to be html5 compliant :
+  - data-ng-bind=""
+  - data-ng-model=""
+
+Translate the interface
+  - use this in html
+    - data-ng-bind="'NAME' | translate"
+
 # HTML Convention
 
 Use html tags : header, footer, article, nav ...  

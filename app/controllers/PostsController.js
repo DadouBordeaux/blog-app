@@ -1,6 +1,6 @@
 /*
-This file define controller for Post, this class extend from Controller class.
-With this extended class, this class obtain all methodd from parent class
+  This file define controller for Post, this class extend from Controller class.
+  With this extended class, this class obtain all methodd from parent class
 */
 
 'use strict'
