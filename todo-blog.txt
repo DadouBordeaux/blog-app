@@ -1,58 +1,51 @@
-rename public to front ?
-app config module to remove ?
-make es default language ?
-
 ===================
 BASE
 ===================
-- Base app
-  - Front app
-  	- Home cp
-  	- Header cp
-  	- Footer cp
-  	- Blogs app
-      - Médecine ancestral cp
-      - Thérapie cp
-      - Blog cp
-  		- Articles cp
-  			- Article cp
-  				- Comments cp
-  		- Filter cp
-  		- Search cp
-  	- Rdv cp
+- Base
+  - Front
+  	- Home
+  	- Header
+  	- Footer
+  	- Blogs
+      - Ancestral medicine
+      - Therapy
+      - Travels
+  		- Articles
+  			- Article
+  				- Comments
+  		- Filter
+  		- Search
+  	- Rdv
   		- ...
-  - Back app
-    - Auth cp
-      - Auth cp
-  	- Blogs cp
-      - Médecine ancestral cp
-      - Thérapie cp
-      - Blog cp
-  		- Articles cp
-        - Article cp
-  		- Categories cp
-  		- Langs cp
-  		- Medias cp
-  		- Users cp
-    	- Config cp
-  		- Config cp
-  		- Comments cp
-  	- Rdv cp
+  - Back
+    - Auth
+  	- Blogs
+      - Ancestral medicine
+      - Therapy
+      - Travels
+  		- Articles
+        - Article
+  		- Categories
+  		- Langs
+  		- Medias
+  		- Users
+    	- Config
+  		- Comments
+  	- Rdv
   		- ...
 
 ===================
 CODE
 ===================
-- don't forget <html lang="">
-- langue en fonction du navigateur
+- redirect to right url according to the user language if needed
+- rename public folder to front ?
+- app config module to remove ?
+- make es default language ?
+- don't forget variable for <html lang="">
 - pagination (sans recharger la page)
 - server or client side rendering ?
 - how to load config file to make it available everywhere ?
   - app.config() ?
-- use passport for auth
-- bindings
-- textangular
-  - virer bootstrap et ui-bootstrap
 -----------------------
 ## optionnal ##
 -----------------------
@@ -91,12 +84,11 @@ FRONT
 ===================
 BACK
 ===================
-- login
-- check for double when upload image and add 01 if exist
+- base app
+- login / authentication with passport
 - posts
-	- textAngular
-    - browse images
-  - preview article
+  - textangular
+    - remove bootstrap and ui-bootstrap
   - pagination
   - update date (created and updated)
   - galleries
@@ -105,6 +97,11 @@ BACK
 -----------------------
 ## optionnal ##
 -----------------------
+- posts
+	- textAngular
+    - browse images
+  - preview article
+- check for double when upload image and add 01, 02 if exist
 - setup
   - config
 - config
