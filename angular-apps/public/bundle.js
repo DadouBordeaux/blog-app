@@ -8966,9 +8966,16 @@ function AppConfig($compileProvider, $urlMatcherFactoryProvider, $stateProvider,
 
   $compileProvider.debugInfoEnabled(false);
 
-  // Make /, /fr, /fr/, /fr/... works
+  // Make optionnal langs works in url like: /, /..., /fr, /fr/, /fr/... works
   $urlMatcherFactoryProvider.strictMode(false);
 
+  // Fallback url if someone try to access a wrong url
+  $urlRouterProvider.otherwise('/');
+
+  // Make clean angular url works - urls without #!
+  $locationProvider.html5Mode(true);
+
+  // States
   $stateProvider.state('app', {
     url: '/:lang',
     abstract: true,
@@ -8979,7 +8986,15 @@ function AppConfig($compileProvider, $urlMatcherFactoryProvider, $stateProvider,
 
       console.log($translate.preferredLanguage());
 
-      if ($stateParams.lang !== 'en') {
+      /*
+        reroute si :
+          - lang non choisie par visiteur
+          &&
+          - lang navigateur != lang default
+      */
+      var defaultLang = 'es';
+
+      if ($stateParams.lang !== defaultLang && $translate.preferredLanguage() !== defaultLang) {
         //$stateParams.lang = 'fr';
         //$state.go('app.header');
       }
@@ -8999,8 +9014,6 @@ function AppConfig($compileProvider, $urlMatcherFactoryProvider, $stateProvider,
     url: '/header',
     template: '<header-cp></header-cp>'
   });
-  $urlRouterProvider.otherwise('/');
-  $locationProvider.html5Mode(true);
 
   // Use JSON files for translations
   $translateProvider.useStaticFilesLoader({
@@ -9011,7 +9024,7 @@ function AppConfig($compileProvider, $urlMatcherFactoryProvider, $stateProvider,
     'en*': 'en',
     'es*': 'es',
     '*': 'fr'
-  }).fallbackLanguage('fr').determinePreferredLanguage().useSanitizeValueStrategy('sanitize');
+  }).fallbackLanguage('es').determinePreferredLanguage().useSanitizeValueStrategy('sanitize');
 }
 
 /***/ }),

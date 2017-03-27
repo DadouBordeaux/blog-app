@@ -88,9 +88,12 @@ BACK
 - base app
 - login / authentication with passport
 - posts
+  - upload
+    - main image
+    - gallery
+  - auto excerpt
   - pagination (sans recharger la page)
   - update date (created and updated)
-  - galleries
   - categories
   - langs
 -----------------------

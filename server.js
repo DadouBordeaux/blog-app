@@ -55,7 +55,7 @@ app.use(cookieParser());
 // Override HTTP methods to support DELETE PUT, if client device doesn't support them
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-//Load all api routes
+// Load all api routes
 app.use('/api', routes());
 
 // Connect to mongodb
