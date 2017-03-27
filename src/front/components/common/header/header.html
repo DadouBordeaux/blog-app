@@ -1,64 +1,53 @@
 <!-- header -->
-<div id="topnav" class="w3-bar ">
-  <!-- espase de logo -->
-  <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYcRWD5h1dxmXQsBtnsHV9D0ulw1wbx3TiTqWZyMQtCDt5yIAp4g" style="width: 200px; height: 55px;"> -->
-  <div style="width: 200px; line-height: 55px; text-align: center; height: 55px;">
-    LUR AZTIA
-  </div>
-  <!-- list du menu -->
-  <ul class="list-menu">
-    <li><a href="#">THERAPIES</a></li>
-    <li><a href="#">MEDICINES ANCESTRALES</a></li>
-    <li>
-      <a href="#" data-ng-bind="'TITLE' | translate"></a>
+<header class="Header">
+  <h1 class="Logo">Lur Aztia</h1>
+  <nav class="Navigation">
+    <ul class="Navigation__list">
+      <li class="Navigation__item">
+        <a ui-sref="#" class="Navigation__link">Thérapies</a>
+      </li>
+      <li class="Navigation__item">
+        <a ui-sref="#" class="Navigation__link">Médecines ancestrales</a>
+      </li>
+      <li class="Navigation__item">
+        <a ui-sref="#" class="Navigation__link">Blog</a>
+      </li>
+    </ul>
+  </nav>
+  <ul class="Filter__list">
+    <li class="Filter__item">
+      <a ui-sref="#" class="Filter__link">
+        <svg class="Filter__svg-icon" viewBox="0 0 20 20">
+							<path fill="none" d="M19.129,18.164l-4.518-4.52c1.152-1.373,1.852-3.143,1.852-5.077c0-4.361-3.535-7.896-7.896-7.896
+								c-4.361,0-7.896,3.535-7.896,7.896s3.535,7.896,7.896,7.896c1.934,0,3.705-0.698,5.078-1.853l4.52,4.519
+								c0.266,0.268,0.699,0.268,0.965,0C19.396,18.863,19.396,18.431,19.129,18.164z M8.567,15.028c-3.568,0-6.461-2.893-6.461-6.461
+								s2.893-6.461,6.461-6.461c3.568,0,6.46,2.893,6.46,6.461S12.135,15.028,8.567,15.028z"></path>
+						</svg>
+        <span>Rechercher</span>
+      </a>
+    </li>
+    <li class="Filter__item">
+      <a ui-sref="#" class="Filter__link">
+        <svg class="Filter__svg-icon" viewBox="0 0 20 20">
+							<path fill="none" d="M15.808,14.066H6.516v-1.162H5.354v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.58s0.26,0.58,0.581,0.58h1.162
+								v1.162h1.162v-1.162h9.292c0.32,0,0.58-0.26,0.58-0.58S16.128,14.066,15.808,14.066z M15.808,9.419h-1.742V8.258h-1.162v1.161
+								h-8.71c-0.321,0-0.581,0.26-0.581,0.581c0,0.321,0.26,0.581,0.581,0.581h8.71v1.161h1.162v-1.161h1.742
+								c0.32,0,0.58-0.26,0.58-0.581C16.388,9.679,16.128,9.419,15.808,9.419z M17.55,0.708H2.451c-0.962,0-1.742,0.78-1.742,1.742v15.1
+								c0,0.961,0.78,1.74,1.742,1.74H17.55c0.962,0,1.742-0.779,1.742-1.74v-15.1C19.292,1.488,18.512,0.708,17.55,0.708z M18.13,17.551
+								c0,0.32-0.26,0.58-0.58,0.58H2.451c-0.321,0-0.581-0.26-0.581-0.58v-15.1c0-0.321,0.26-0.581,0.581-0.581H17.55
+								c0.32,0,0.58,0.26,0.58,0.581V17.551z M15.808,4.774H9.419V3.612H8.258v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.581
+								s0.26,0.581,0.581,0.581h4.065v1.162h1.161V5.935h6.388c0.32,0,0.58-0.26,0.58-0.581S16.128,4.774,15.808,4.774z"></path>
+						</svg>
+        <span>Filtrer</span>
+      </a>
+    </li>
+    <li class="Filter__item">
+      <a ui-sref="#" class="Filter__link">
+        <svg class="Filter__svg-icon" viewBox="0 0 22 22">
+          <path d="M16.359 14.016h3.375c0.141-0.656 0.281-1.313 0.281-2.016s-0.141-1.359-0.281-2.016h-3.375c0.094 0.656 0.141 1.313 0.141 2.016s-0.047 1.359-0.141 2.016zM14.578 19.547c1.828-0.609 3.422-1.922 4.359-3.563h-2.953c-0.328 1.266-0.797 2.438-1.406 3.563zM14.344 14.016c0.094-0.656 0.141-1.313 0.141-2.016s-0.047-1.359-0.141-2.016h-4.688c-0.094 0.656-0.141 1.313-0.141 2.016s0.047 1.359 0.141 2.016h4.688zM12 19.969c0.844-1.219 1.5-2.531 1.922-3.984h-3.844c0.422 1.453 1.078 2.766 1.922 3.984zM8.016 8.016c0.328-1.266 0.797-2.438 1.406-3.563-1.828 0.609-3.422 1.922-4.359 3.563h2.953zM5.063 15.984c0.938 1.641 2.531 2.953 4.359 3.563-0.609-1.125-1.078-2.297-1.406-3.563h-2.953zM4.266 14.016h3.375c-0.094-0.656-0.141-1.313-0.141-2.016s0.047-1.359 0.141-2.016h-3.375c-0.141 0.656-0.281 1.313-0.281 2.016s0.141 1.359 0.281 2.016zM12 4.031c-0.844 1.219-1.5 2.531-1.922 3.984h3.844c-0.422-1.453-1.078-2.766-1.922-3.984zM18.938 8.016c-0.938-1.641-2.531-2.953-4.359-3.563 0.609 1.125 1.078 2.297 1.406 3.563h2.953zM12 2.016c5.531 0 9.984 4.453 9.984 9.984s-4.453 9.984-9.984 9.984-9.984-4.453-9.984-9.984 4.453-9.984 9.984-9.984z"></path>
+        </svg>
+        <span>Langue</span>
+      </a>
     </li>
   </ul>
-
-  <ul>
-    <!-- parti de recherche -->
-    <li id="search" class="w3-padding w3-xlarge w3-text-orange right-menu">
-      <i class="fa fa-search" style="font-size:15px;"></i>
-      <ul>
-        <li class="dropdown">
-          <a href="#">RECHERCHER</a>
-          <div class="dropdown-content">
-            <a href="#">
-              <form>
-                <span class="icon icon-search"><i class="fa fa-search" aria-hidden="true" style="font-size:15px; padding: 0px;"></i></span>
-                <input type="text" name="search" placeholder="Search..">
-              </form>
-            </a>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <!-- parti de filter -->
-    <li id="filter" class="w3-padding w3-xlarge w3-text-orange right-menu">
-      <i class="fa fa-bars" style="font-size:15px;"></i>
-
-      <ul>
-        <li class="dropdown">
-          <a href="#">FILTER &#9660;</a>
-          <div class="dropdown-content">
-            <a href="#">CATEGORIES</a>
-            <a href="#">DATE</a>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <!-- parti du langues -->
-    <li id="langue" class="w3-padding w3-xlarge w3-text-orange right-menu">
-      <i class="fa fa-language" aria-hidden="true" style="font-size:15px"></i>
-      <ul>
-        <li class="dropdown">
-          <a href="#">FR</a>
-          <div class="dropdown-content">
-            <a href="#">FR</a>
-            <a href="#">ENG</a>
-            <a href="#">ESP</a>
-          </div>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>
+</header>

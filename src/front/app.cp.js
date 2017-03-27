@@ -7,5 +7,10 @@
 import template from './app.html';
 
 export const AppComponent = {
-  template
+  template,
+  controller: class AppComponent {
+    constructor() {
+      this.lang;
+    }
+  }
 };

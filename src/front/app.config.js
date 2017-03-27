@@ -34,7 +34,7 @@ export function AppConfig($compileProvider, $urlMatcherFactoryProvider, $statePr
               &&
               - lang navigateur != lang default
           */
-          let defaultLang = 'es';
+          let defaultLang = 'fr';
 
           if ($stateParams.lang !== defaultLang && $translate.preferredLanguage() !== defaultLang) {
             //$stateParams.lang = 'fr';
@@ -71,7 +71,7 @@ export function AppConfig($compileProvider, $urlMatcherFactoryProvider, $statePr
       'es*': 'es',
       '*': 'fr'
     })
-    .fallbackLanguage('es')
+    .fallbackLanguage('fr')
     .determinePreferredLanguage()
     .useSanitizeValueStrategy('sanitize');
 }

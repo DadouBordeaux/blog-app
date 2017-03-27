@@ -13,7 +13,7 @@ Remove `<script src="http://localhost:35729/livereload.js"></script>` in index.h
 - Reset changes in case of error but before a commit
   $ git reset --hard
 
-- Before changing branch make sur you have made on the right branch
+- Before changing branch make sure you have made on the right branch
   $ git add .
   $ git commit -m "my comment"
 
