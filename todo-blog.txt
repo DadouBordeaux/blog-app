@@ -2,7 +2,7 @@
 BASE
 ===================
 - Base
-  - Front
+  - Front base
   	- Home
   	- Header
   	- Footer
@@ -17,7 +17,7 @@ BASE
   		- Search
   	- Rdv
   		- ...
-  - Back
+  - Back base
     - Auth
   	- Blogs
       - Ancestral medicine
@@ -42,10 +42,10 @@ CODE
 - app config module to remove ?
 - make es default language ?
 - don't forget variable for <html lang="">
-- pagination (sans recharger la page)
 - server or client side rendering ?
 - how to load config file to make it available everywhere ?
   - app.config() ?
+- block admin access except if autenticated
 -----------------------
 ## optionnal ##
 -----------------------
@@ -70,15 +70,16 @@ DB
 ===================
 FRONT
 ===================
-- langs choice
+- langs choice (change url)
 - display articles by date created
-- pagination
+- pagination (sans recharger la page)
 	- articles
-- categories
-- search
 -----------------------
 ## optionnal ##
 -----------------------
+- localize date
+- categories
+- search
 - comments
 
 ===================
@@ -87,13 +88,11 @@ BACK
 - base app
 - login / authentication with passport
 - posts
-  - textangular
-    - remove bootstrap and ui-bootstrap
-  - pagination
+  - pagination (sans recharger la page)
   - update date (created and updated)
   - galleries
-- categories
-- langs
+  - categories
+  - langs
 -----------------------
 ## optionnal ##
 -----------------------
@@ -107,3 +106,5 @@ BACK
 - config
 - medias
 - comments
+- categories
+- langs
